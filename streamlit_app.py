@@ -5,8 +5,8 @@ from pathlib import Path
 
 # Set the title and favicon that appear in the Browser's tab bar.
 st.set_page_config(
-    page_title='GDP dashboard',
-    page_icon=':earth_americas:', # This is an emoji shortcode. Could be a URL too.
+    page_title='MCO dashboard',
+    page_icon=':bulb:', # This is an emoji shortcode. Could be a URL too.
 )
 
 # -----------------------------------------------------------------------------
@@ -14,7 +14,7 @@ st.set_page_config(
 
 @st.cache_data
 def get_gdp_data():
-    """Grab GDP data from a CSV file.
+    """Grab MCO data from a CSV file.
 
     This uses caching to avoid having to read the file every time. If we were
     reading from an HTTP endpoint instead of a file, it's a good idea to set
@@ -22,11 +22,12 @@ def get_gdp_data():
     """
 
     # Instead of a CSV on disk, you could read from an HTTP endpoint here too.
-    DATA_FILENAME = Path(__file__).parent/'data/gdp_data.csv'
-    raw_gdp_df = pd.read_csv(DATA_FILENAME)
+    # DATA_FILENAME = Path(__file__).parent/'data/HT1C33_depl_mco_208rev1.csv'
+    DATA_FILENAME = 'HT1C33_depl_mco_208rev1.csv'
+    raw_mco_df = pd.read_csv(DATA_FILENAME)
 
-    MIN_YEAR = 1960
-    MAX_YEAR = 2022
+    MIN_CYC_EXP = 0
+    MAX_CYC_EXP = 17000
 
     # The data above has columns like:
     # - Country Name
